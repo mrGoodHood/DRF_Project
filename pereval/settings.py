@@ -43,11 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'users',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'main',
-    'users',
     'rest_framework'
 ]
 
@@ -138,6 +138,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
+
 SITE_ID = 1
 
 # Default primary key field type

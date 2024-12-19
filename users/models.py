@@ -35,10 +35,12 @@ class UserManager(BaseUserManager):
     def create_superuser(self, username, email=None, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
+
         if extra_fields.get('is_staff') is not True:
             raise ValueError('Superuser must have is_staff=True.')
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
+
         return self._create_user(username, email, password, **extra_fields)
 
     def with_perm(self, perm, is_active=True, include_superusers=True, backend=None, obj=None):
@@ -79,10 +81,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     last_login = models.DateTimeField(null=True, blank=True)
     date_joined = models.DateTimeField(auto_now_add=True)
+
     USERNAME_FIELD = 'username'
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = ['email']
+
     objects = UserManager()
 
     def get_absolute_url(self):
         return "/users/%i/" % (self.pk)
+
+    def __str__(self):
+        return f"id: {self.pk}, username:{self.username}"
