@@ -37,6 +37,6 @@ class PerevalImages(models.Model):
     pereval = models.ForeignKey(PerevalAdd, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     date_added = models.DateTimeField(auto_now_add=True)
-    img = models.BinaryField()
+    img = models.ImageField(upload_to='photos/%Y/%m/%d/')
 class ActivitiesTypes(models.Model):
     title = models.TextField()
